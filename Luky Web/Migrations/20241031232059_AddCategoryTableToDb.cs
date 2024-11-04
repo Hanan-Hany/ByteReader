@@ -4,7 +4,7 @@
 
 namespace Luky_Web.Migrations
 {
-    /// <inheritdoc />
+    ///// <inheritdoc />
     public partial class AddCategoryTableToDb : Migration
     {
         /// <inheritdoc />
