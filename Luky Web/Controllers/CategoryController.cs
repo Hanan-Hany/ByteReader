@@ -13,7 +13,7 @@ namespace Luky_Web.Controllers
             _context = context;
            
         }
-        List<Category> categories;
+        List<Category> categories=new List<Category>();
         public IActionResult Index()
         {
            categories =_context.Categories.ToList();
