@@ -2,6 +2,7 @@
 using Luky_Web.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Luky_Web.Controllers
 {
@@ -28,10 +29,17 @@ namespace Luky_Web.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
-
-           _context.Categories.Add(category);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            if (category.Name==category.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError ("Name", "The Name Cannot exactly match the Display order");
+            }
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Add(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
     }
