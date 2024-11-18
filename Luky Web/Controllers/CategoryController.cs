@@ -37,6 +37,7 @@ namespace Luky_Web.Controllers
             {
                 _context.Categories.Add(category);
                 _context.SaveChanges();
+                TempData["success"] = "Category Created successfuly";
                 return RedirectToAction("Index");
             }
             return View();
@@ -65,6 +66,7 @@ namespace Luky_Web.Controllers
             {
                 _context.Categories.Update(category);
                 _context.SaveChanges();
+                TempData["success"] = "Category Updated Successfuly";
                 return RedirectToAction("Index");
             }
             return View();
@@ -96,7 +98,8 @@ namespace Luky_Web.Controllers
             
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+            TempData["success"] = "Category Deleted Successfuly";
+            return RedirectToAction("Index");
             
             
         }
