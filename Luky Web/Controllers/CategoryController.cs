@@ -1,10 +1,11 @@
-﻿using Luky_Web.Data;
-using Luky_Web.Models;
+﻿
+using Luky.DataAccess.Data;
+using Luky.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Luky_Web.Controllers
+namespace Luky.Controllers
 {
     public class CategoryController : Controller
     {
