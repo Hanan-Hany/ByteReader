@@ -1,5 +1,4 @@
-
-using Luky.DataAccess.Data;
+using Luky_Web.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

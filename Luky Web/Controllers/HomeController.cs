@@ -1,8 +1,8 @@
-using Luky.Models;
+using Luky_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 //Home Controller
-namespace Luky.Controllers
+namespace Luky_Web.Controllers
 {
     public class HomeController : Controller
     {
