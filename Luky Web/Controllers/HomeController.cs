@@ -1,4 +1,5 @@
-using Luky_Web.Models;
+using Luky.Models;
+
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 //Home Controller
