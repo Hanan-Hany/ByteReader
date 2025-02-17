@@ -1,4 +1,5 @@
 ﻿using Luky.DataAccess.Data;
+using Luky.DataAccess.Repository.IRepository;
 using Luky.Models;
 
 using Microsoft.AspNetCore.Hosting;
@@ -9,16 +10,18 @@ namespace Luky_Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicaionDbContext _context;
-        public CategoryController(ApplicaionDbContext context, IWebHostEnvironment webHostEnvironment)
+        private readonly ICategoryRepository _categoryRepo;
+        public CategoryController(ICategoryRepository context )
         {
-            _context = context;
+            _categoryRepo = context;
            
         }
-        List<Category> categories=new List<Category>();
+        List<Category> categories = new List<Category>();
+
         public IActionResult Index()
         {
-           categories =_context.Categories.ToList();
+
+            categories = _categoryRepo.GetAll().ToList();
 
             return View(categories);
         }
@@ -36,8 +39,8 @@ namespace Luky_Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                _context.Categories.Add(category);
-                _context.SaveChanges();
+                _categoryRepo.Add(category);
+                _categoryRepo.save();
                 TempData["success"] = "Category Created successfuly";
                 return RedirectToAction("Index");
             }
@@ -50,7 +53,7 @@ namespace Luky_Web.Controllers
             {
                 return NotFound();
             }
-            Category? category = _context.Categories.Find(id);
+            Category? category = _categoryRepo.Get(u=>u.Id==id);
 
             if (category == null)
             {
@@ -65,8 +68,8 @@ namespace Luky_Web.Controllers
            
             if (ModelState.IsValid)
             {
-                _context.Categories.Update(category);
-                _context.SaveChanges();
+                _categoryRepo.Update(category);
+                _categoryRepo.save();
                 TempData["success"] = "Category Updated Successfuly";
                 return RedirectToAction("Index");
             }
@@ -79,7 +82,7 @@ namespace Luky_Web.Controllers
             {
                 return NotFound();
             }
-            Category? category = _context.Categories.Find(id);
+            Category? category = _categoryRepo.Get(u => u.Id == id);
 
             if (category == null)
             {
@@ -91,14 +94,14 @@ namespace Luky_Web.Controllers
         [HttpPost,ActionName("Delete")]
         public IActionResult DeletePost( int ?id)
         {
-            Category? category = _context.Categories.Find(id);
+            Category? category = _categoryRepo.Get(u => u.Id == id);
             if (category == null) 
             { return NotFound();
             }
            
             
-                _context.Categories.Remove(category);
-                _context.SaveChanges();
+                _categoryRepo.Remove(category);
+                _categoryRepo.save();
             TempData["success"] = "Category Deleted Successfuly";
             return RedirectToAction("Index");
             
