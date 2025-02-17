@@ -1,12 +1,13 @@
-﻿using Luky.DataAccess.Data;
-using Luky.DataAccess.Repository.IRepository;
-using Luky.Models;
+﻿
+using ByteReader.Models;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using ByteReader.DataAccess.Repository.IRepository;
 
-namespace Luky_Web.Controllers
+
+namespace ByteReader.Controllers
 {
     public class CategoryController : Controller
     {

@@ -1,7 +1,8 @@
-﻿using Luky.Models;
+﻿
+using ByteReader.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Luky.DataAccess.Data
+namespace ByteReader.DataAccess.Data
 {
     public class ApplicaionDbContext: DbContext
     {

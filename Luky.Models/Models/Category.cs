@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Luky.Models
+namespace ByteReader.Models
 {
     public class Category
     {

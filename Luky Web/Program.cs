@@ -1,6 +1,6 @@
-using Luky.DataAccess.Data;
-using Luky.DataAccess.Repository;
-using Luky.DataAccess.Repository.IRepository;
+using ByteReader.DataAccess.Data;
+using ByteReader.DataAccess.Repository;
+using ByteReader.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

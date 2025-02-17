@@ -1,5 +1,5 @@
-﻿using Luky.DataAccess.Data;
-using Luky.DataAccess.Repository.IRepository;
+﻿using ByteReader.DataAccess.Data;
+using ByteReader.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Luky.DataAccess.Repository
+namespace ByteReader.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {

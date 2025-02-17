@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Luky.Utilities
+namespace ByteReader.Utilities
 {
     public static class StaticDetails
     {

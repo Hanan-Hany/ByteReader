@@ -1,5 +1,5 @@
-using Luky.Models;
-
+using ByteReader;
+using ByteReader.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 //Home Controller

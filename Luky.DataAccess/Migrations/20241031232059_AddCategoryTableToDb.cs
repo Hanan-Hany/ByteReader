@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Luky.DataAccess.Migrations
+namespace ByteReader.DataAccess.Migrations
 {
     ///// <inheritdoc />
     public partial class AddCategoryTableToDb : Migration

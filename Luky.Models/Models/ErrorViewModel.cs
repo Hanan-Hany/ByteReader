@@ -1,4 +1,4 @@
-namespace Luky.Models
+namespace ByteReader.Models
 {
     public class ErrorViewModel
     {

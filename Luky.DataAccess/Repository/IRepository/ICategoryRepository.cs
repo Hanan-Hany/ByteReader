@@ -1,11 +1,12 @@
-﻿using Luky.Models;
+﻿using ByteReader.DataAccess.Repository.IRepository;
+using ByteReader.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Luky.DataAccess.Repository.IRepository
+namespace ByteReader.DataAccess.Repository.IRepository
 {
     public interface ICategoryRepository:IRepository<Category>
     {
