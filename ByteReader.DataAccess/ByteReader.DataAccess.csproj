@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Luky.Models\ByteReader.Models.csproj" />
-    <ProjectReference Include="..\Luky.Utilities\ByteReader.Utilities.csproj" />
+    <ProjectReference Include="..\ByteReader.Models\ByteReader.Models.csproj" />
+    <ProjectReference Include="..\ByteReader.Utilities\ByteReader.Utilities.csproj" />
   </ItemGroup>
 
 </Project>
