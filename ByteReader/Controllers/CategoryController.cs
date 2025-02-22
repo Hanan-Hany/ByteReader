@@ -11,18 +11,18 @@ namespace ByteReader.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _categoryRepo;
-        public CategoryController(ICategoryRepository context )
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork )
         {
-            _categoryRepo = context;
+          _unitOfWork = unitOfWork;
            
         }
-        List<Category> categories = new List<Category>();
+      
 
         public IActionResult Index()
         {
 
-            categories = _categoryRepo.GetAll().ToList();
+            List<Category> categories = _unitOfWork.Category.GetAll().ToList();
 
             return View(categories);
         }
@@ -40,8 +40,8 @@ namespace ByteReader.Controllers
             }
             if (ModelState.IsValid)
             {
-                _categoryRepo.Add(category);
-                _categoryRepo.save();
+                _unitOfWork.Category.Add(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category Created successfuly";
                 return RedirectToAction("Index");
             }
@@ -54,7 +54,7 @@ namespace ByteReader.Controllers
             {
                 return NotFound();
             }
-            Category? category = _categoryRepo.Get(u=>u.Id==id);
+            Category? category = _unitOfWork.Category.Get(u=>u.Id==id);
 
             if (category == null)
             {
@@ -69,8 +69,8 @@ namespace ByteReader.Controllers
            
             if (ModelState.IsValid)
             {
-                _categoryRepo.Update(category);
-                _categoryRepo.save();
+                _unitOfWork.Category.Update(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category Updated Successfuly";
                 return RedirectToAction("Index");
             }
@@ -83,7 +83,7 @@ namespace ByteReader.Controllers
             {
                 return NotFound();
             }
-            Category? category = _categoryRepo.Get(u => u.Id == id);
+            Category? category = _unitOfWork.Category.Get(u => u.Id == id);
 
             if (category == null)
             {
@@ -95,14 +95,14 @@ namespace ByteReader.Controllers
         [HttpPost,ActionName("Delete")]
         public IActionResult DeletePost( int ?id)
         {
-            Category? category = _categoryRepo.Get(u => u.Id == id);
+            Category? category = _unitOfWork.Category.Get(u => u.Id == id);
             if (category == null) 
             { return NotFound();
             }
            
             
-                _categoryRepo.Remove(category);
-                _categoryRepo.save();
+                _unitOfWork.Category.Remove(category);
+                _unitOfWork.Save(); 
             TempData["success"] = "Category Deleted Successfuly";
             return RedirectToAction("Index");
             
