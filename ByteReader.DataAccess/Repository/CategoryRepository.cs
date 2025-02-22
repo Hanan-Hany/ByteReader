@@ -18,19 +18,11 @@ namespace ByteReader.DataAccess.Repository
 
         public CategoryRepository(ApplicaionDbContext db) : base(db)
         {
-            {
-                _db = db;
-
-            }
-
+            _db = db;
 
         }
 
-        public void save()
-        {
-           _db.SaveChanges();
-        }
-
+       
         public void Update(Category obj)
         {
             _db.Categories.Update(obj);
