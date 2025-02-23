@@ -7,17 +7,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ByteReader.DataAccess.Repository.IRepository;
 
 
-namespace ByteReader.Controllers
+namespace Luky_web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CategoryController(IUnitOfWork unitOfWork )
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-          _unitOfWork = unitOfWork;
-           
+            _unitOfWork = unitOfWork;
+
         }
-      
+
 
         public IActionResult Index()
         {
@@ -34,9 +35,9 @@ namespace ByteReader.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
-            if (category.Name==category.DisplayOrder.ToString())
+            if (category.Name == category.DisplayOrder.ToString())
             {
-                ModelState.AddModelError ("Name", "The Name Cannot exactly match the Display order");
+                ModelState.AddModelError("Name", "The Name Cannot exactly match the Display order");
             }
             if (ModelState.IsValid)
             {
@@ -54,7 +55,7 @@ namespace ByteReader.Controllers
             {
                 return NotFound();
             }
-            Category? category = _unitOfWork.Category.Get(u=>u.Id==id);
+            Category? category = _unitOfWork.Category.Get(u => u.Id == id);
 
             if (category == null)
             {
@@ -66,7 +67,7 @@ namespace ByteReader.Controllers
         [HttpPost]
         public IActionResult Edit(Category category)
         {
-           
+
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Update(category);
@@ -92,21 +93,22 @@ namespace ByteReader.Controllers
             return View(category);
 
         }
-        [HttpPost,ActionName("Delete")]
-        public IActionResult DeletePost( int ?id)
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeletePost(int? id)
         {
             Category? category = _unitOfWork.Category.Get(u => u.Id == id);
-            if (category == null) 
-            { return NotFound();
+            if (category == null)
+            {
+                return NotFound();
             }
-           
-            
-                _unitOfWork.Category.Remove(category);
-                _unitOfWork.Save(); 
+
+
+            _unitOfWork.Category.Remove(category);
+            _unitOfWork.Save();
             TempData["success"] = "Category Deleted Successfuly";
             return RedirectToAction("Index");
-            
-            
+
+
         }
 
     }

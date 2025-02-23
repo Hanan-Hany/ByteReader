@@ -3,10 +3,12 @@ using ByteReader.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 //Home Controller
-namespace Luky_Web.Controllers
+namespace Luky_web.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
