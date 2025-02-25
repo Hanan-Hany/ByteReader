@@ -1,5 +1,6 @@
 ﻿
 using ByteReader.Models;
+using ByteReader.Models.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ByteReader.DataAccess.Data
@@ -11,5 +12,6 @@ namespace ByteReader.DataAccess.Data
             
         }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

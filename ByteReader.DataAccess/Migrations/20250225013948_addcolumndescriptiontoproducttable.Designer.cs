@@ -3,6 +3,7 @@ using ByteReader.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Luky_web.Migrations
 {
     [DbContext(typeof(ApplicaionDbContext))]
-    partial class ApplicaionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250225013948_addcolumndescriptiontoproducttable")]
+    partial class addcolumndescriptiontoproducttable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected  void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
