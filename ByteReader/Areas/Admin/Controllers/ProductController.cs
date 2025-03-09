@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ByteReader.DataAccess.Repository.IRepository;
 using ByteReader.Models.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace Luky_web.Areas.Admin.Controllers
@@ -25,12 +26,19 @@ namespace Luky_web.Areas.Admin.Controllers
         {
 
             List<Product> products = _unitOfWork.Product.GetAll().ToList();
-
+           
             return View(products);
         }
 
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+
+            }); 
+            ViewBag.CategoryList = CategoryList;
             return View();
         }
         [HttpPost]
