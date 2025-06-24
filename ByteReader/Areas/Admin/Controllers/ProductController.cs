@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ByteReader.DataAccess.Repository.IRepository;
 using ByteReader.Models.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ByteReader.Models.ViewModel;
 
 
 namespace Luky_web.Areas.Admin.Controllers
@@ -32,30 +33,47 @@ namespace Luky_web.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+        
+            ProductVM productVM = new ()
             {
-                Text = u.Name,
-                Value = u.Id.ToString()
+                product = new Product(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
 
-            }); 
-            ViewBag.CategoryList = CategoryList;
-            return View();
+                })
+            };
+            return View(productVM);
         }
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductVM productVM)
         {
-            if (product.Title == product.ISBN.ToString())
+            if (productVM.product.Title == productVM.product.ISBN.ToString())
             {
-                ModelState.AddModelError("Title", "The Title Cannot exactly match the ISBN");
+                 ModelState.AddModelError("Title", "The Title Cannot exactly match the ISBN");
             }
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(product);
+                _unitOfWork.Product.Add(productVM.product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product Created successfuly";
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+
+
+                productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+
+                });
+                return View(productVM);
+
+            }
+            
         }
 
         public IActionResult Edit(int? id)
