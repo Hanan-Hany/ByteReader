@@ -31,7 +31,7 @@ namespace Luky_web.Areas.Admin.Controllers
             return View(products);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int ?id) //Upd ateIn sert
         {
         
             ProductVM productVM = new ()
@@ -43,11 +43,23 @@ namespace Luky_web.Areas.Admin.Controllers
                     Value = u.Id.ToString()
 
                 })
+
             };
-            return View(productVM);
+            if (id == null || id == 0)
+            {
+                //Create Product
+                return View(productVM);
+            }
+            else
+            {
+                //Update Product
+                productVM.product = _unitOfWork.Product.Get(u => u.Id == id);
+                return View(productVM);
+            }
+           
         }
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM ,IFormFile ? file)
         {
             if (productVM.product.Title == productVM.product.ISBN.ToString())
             {
@@ -76,35 +88,7 @@ namespace Luky_web.Areas.Admin.Controllers
             
         }
 
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Product? product = _unitOfWork.Product.Get(u => u.Id == id);
-
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return View(product);
-
-        }
-        [HttpPost]
-        public IActionResult Edit(Product product)
-        {
-
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(product);
-                _unitOfWork.Save();
-                TempData["success"] = "Product Updated Successfuly";
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
-
+     
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
