@@ -1,114 +1,111 @@
 ﻿@model ProductVM
+
 <div class="card shadow border-0 my-4">
-<div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
-    <div class="row">
-        <div class="col-12 text-center">
-                <h2 class="text-white py-2">@(Model.product.Id!=0?"Update":"Create") Product </h2>
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">
+                    @(Model.product.Id != 0 ? "Update" : "Create") Product
+                </h2>
+            </div>
         </div>
     </div>
-</div>
-<div class="card-body p-4">
+
+    <div class="card-body p-4">
         <form method="post" class="row" enctype="multipart/form-data">
             <input asp-for="product.Id" hidden />
             <div class="border p-3 ">
-                
-                @*<div asp-validation-summary="All"> </div>*@
-                <div class="form-floating py-2 col-12"> 
-                   
+
+                <div class="form-floating py-2 col-12">
                     <input asp-for="product.Title" class="form-control border-0 shadow" />
                     <label class="ms-2" asp-for="product.Title"></label>
-                    <span asp-validation-for="product.Title" class="text-danger"> </span>
+                    <span asp-validation-for="product.Title" class="text-danger"></span>
                 </div>
-                 <div class="form-floating py-2 col-12 ">
-                    <textarea asp-for="product.Description" class="form-control border-0 shadow"></textarea>
-                     <label class="ms-2" asp-for="product.Description"></label>
 
-                    <span asp-validation-for="product.Description" class="text-danger"> </span>
-                 </div>
-                <div class="form-floating py-2 col-12 ">
+               
+                <div class="py-2 col-12">
+                    <label asp-for="product.Description" class="ms-2 text-muted"></label>
+                    <textarea asp-for="product.Description" class="form-control border-0 shadow"></textarea>
+              
+                </div>
+
+                <div class="form-floating py-2 col-12">
                     <input asp-for="product.ISBN" class="form-control border-0 shadow" />
                     <label class="ms-2" asp-for="product.ISBN"></label>
-                  
-                    <span asp-validation-for="product.ISBN" class="text-danger"> </span>
+                    <span asp-validation-for="product.ISBN" class="text-danger"></span>
                 </div>
-                <div class="form-floating py-2 col-12 ">
+
+                <div class="form-floating py-2 col-12">
                     <input asp-for="product.Author" class="form-control border-0 shadow" />
                     <label class="ms-2" asp-for="product.Author"></label>
-
-                    <span asp-validation-for="product.Author" class="text-danger"> </span>
+                    <span asp-validation-for="product.Author" class="text-danger"></span>
                 </div>
-              
-                <div class="form-floating py-2 col-12 ">
+
+                <div class="form-floating py-2 col-12">
                     <input asp-for="product.ListPrice" class="form-control border-0 shadow" />
                     <label class="ms-2" asp-for="product.ListPrice"></label>
-
-                    <span asp-validation-for="product.ListPrice" class="text-danger"> </span>
+                    <span asp-validation-for="product.ListPrice" class="text-danger"></span>
                 </div>
-                <div class="form-floating py-2 col-12 ">
+
+                <div class="form-floating py-2 col-12">
                     <input asp-for="product.Price" class="form-control border-0 shadow" />
                     <label class="ms-2" asp-for="product.Price"></label>
-
-                    <span asp-validation-for="product.Price" class="text-danger"> </span>
+                    <span asp-validation-for="product.Price" class="text-danger"></span>
                 </div>
-                <div class="form-floating py-2 col-12 ">
+
+                <div class="form-floating py-2 col-12">
                     <input asp-for="product.Price50" class="form-control border-0 shadow" />
                     <label class="ms-2" asp-for="product.Price50"></label>
-
-                    <span asp-validation-for="product.Price50" class="text-danger"> </span>
+                    <span asp-validation-for="product.Price50" class="text-danger"></span>
                 </div>
-                <div class="form-floating py-2 col-12 ">
+
+                <div class="form-floating py-2 col-12">
                     <input asp-for="product.Price100" class="form-control border-0 shadow" />
                     <label class="ms-2" asp-for="product.Price100"></label>
-
-                    <span asp-validation-for="product.Price100" class="text-danger"> </span>
+                    <span asp-validation-for="product.Price100" class="text-danger"></span>
                 </div>
-               
-                <div class="form-floating py-2 col-12 ">
-                    <select asp-for="@Model.product.CategoryId"  asp-items="@Model.CategoryList"  class="form-select border-0 shadow">
-                        <option>--Select Category</option>
+
+                <div class="form-floating py-2 col-12">
+                    <select asp-for="product.CategoryId" asp-items="Model.CategoryList" class="form-select border-0 shadow">
+                        <option>--Select Category--</option>
                     </select>
                     <label class="ms-2" asp-for="product.CategoryId"></label>
-
-                    <span asp-validation-for="product.CategoryId" class="text-danger"> </span>
+                    <span asp-validation-for="product.CategoryId" class="text-danger"></span>
                 </div>
-                <div class="form-floating py-2 col-12 ">
-                    <input type="file" class="form-control border-0 shadow" />
+
+                <div class="form-floating py-2 col-12">
+                    <input type="file" asp-for="product.ImageUrl" class="form-control border-0 shadow" />
                     <label class="ms-2" asp-for="product.ImageUrl"></label>
-
-                    <span asp-validation-for="product.ImageUrl" class="text-danger"> </span>
+                    <span asp-validation-for="product.ImageUrl" class="text-danger"></span>
                 </div>
-                <div class="row pt-2 ">
+
+                <div class="row pt-2">
                     <div class="col-6 col-md-3">
-                        @if (Model.product.Id != 0)
-                        {
-                              <button type="submit" class="btn btn-primary form-control">
-                                Update
-                            </button>
-                        }
-                        else
-                        {
-                            <button type="submit" class="btn btn-primary form-control">
-                                Create
+                        <button type="submit" class="btn btn-primary form-control">
+                            @(Model.product.Id != 0 ? "Update" : "Create")
                         </button>
-                        }
                     </div>
                     <div class="col-6 col-md-3">
-
-                        <a asp-controller="product" asp-action="Index" class="btn btn-outline-primary border form-control">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary border form-control">
                             Back To List
                         </a>
                     </div>
-
                 </div>
 
             </div>
         </form>
-</div>
+    </div>
 </div>
 
-@section Scripts{
-@{
-    <partial name="_ValidationScriptsPartial"/>
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('textarea[name="product.Description"]'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 
+    <partial name="_ValidationScriptsPartial" />
 }
- }
