@@ -8,6 +8,7 @@ using ByteReader.DataAccess.Repository.IRepository;
 using ByteReader.Models.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ByteReader.Models.ViewModel;
+using Humanizer;
 
 
 namespace Luky_web.Areas.Admin.Controllers
@@ -27,7 +28,7 @@ namespace Luky_web.Areas.Admin.Controllers
         public IActionResult Index()
         {
 
-            List<Product> products = _unitOfWork.Product.GetAll().ToList();
+            List<Product> products = _unitOfWork.Product.GetAll(includeProperties: "category").ToList();
            
             return View(products);
         }
@@ -59,6 +60,7 @@ namespace Luky_web.Areas.Admin.Controllers
             }
            
         }
+        
         [HttpPost]
         public IActionResult Upsert(ProductVM productVM ,IFormFile ? file)
         {
