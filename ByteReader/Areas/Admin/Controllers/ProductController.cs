@@ -155,6 +155,14 @@ namespace Luky_web.Areas.Admin.Controllers
 
 
         }
+# region Api Calls
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Product> products = _unitOfWork.Product.GetAll(includeProperties: "category").ToList();
+            return Json(new { data = products });
+        }
+#endregion
 
     }
 }
